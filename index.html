@@ -209,11 +209,36 @@
       border-bottom: 1px solid var(--line);
     }
 
-    .card-image img {
+    .card-image img,
+    .card-image video {
       width: 100%;
       height: 100%;
-      object-fit: contain;
-      background: #ffffff;
+      display: block;
+      object-fit: cover;
+      background: #000000;
+    }
+
+    .card-image video {
+      cursor: pointer;
+    }
+
+    .imgur-embed-wrap {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #000000;
+    }
+
+    .imgur-embed-wrap iframe {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 118%;
+      height: 118%;
+      border: 0;
+      transform: translate(-50%, -50%) scale(1.08);
+      transform-origin: center;
+      background: #000000;
     }
 
     .image-fallback {
@@ -469,12 +494,19 @@
       <div class="card-grid">
         <article class="card">
           <div class="card-image">
-            <img
-              src="https://i.imgur.com/yaZfQZ1.mp4"
-              alt="https://i.imgur.com/yaZfQZ1.mp4"
-              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            <video
+              autoplay
+              muted
+              loop
+              playsinline
+              controls
+              preload="metadata"
+              aria-label="Dr. Half Moon project video"
             >
-            <span class="image-fallback">Add Cover Image</span>
+              <source src="https://i.imgur.com/yaZfQZ1.mp4" type="video/mp4">
+              Your browser does not support embedded video.
+              <a href="https://i.imgur.com/yaZfQZ1.mp4">Open the Dr. Half Moon video</a>
+            </video>
           </div>
 
           <div class="card-body">
@@ -491,12 +523,15 @@
 
         <article class="card">
           <div class="card-image">
-            <img
-              src="https://imgur.com/a/26k9esI"
-              alt="https://imgur.com/a/26k9esI"
-              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-            >
-            <span class="image-fallback">Add Storyboard Image</span>
+            <div class="imgur-embed-wrap">
+              <iframe
+                src="https://imgur.com/a/26k9esI/embed?pub=true&context=false"
+                title="Cheoyong project image"
+                loading="lazy"
+                scrolling="no"
+                allowfullscreen
+              ></iframe>
+            </div>
           </div>
 
           <div class="card-body">
