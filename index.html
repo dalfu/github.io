@@ -1,214 +1,566 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Studio Dalfu</title>
-<style>
-  :root {
-    --accent: #1F3864;
-    --gray: #595959;
-    --text: #1a1a1a;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: "Helvetica Neue", Arial, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-    color: var(--text);
-    background: #f2f2f2;
-    line-height: 1.45;
-    font-size: 14px;
-  }
-  .page {
-    max-width: 8.5in;
-    margin: 24px auto;
-    background: #fff;
-    padding: 0.7in 0.8in;
-    box-shadow: 0 2px 12px rgba(0,0,0,.12);
-  }
-  header { text-align: center; margin-bottom: 18px; }
-  h1 { font-size: 26px; letter-spacing: 2px; color: var(--accent); }
-  .contact { color: var(--gray); font-size: 12.5px; margin-top: 4px; }
-  h2 {
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--accent);
-    border-bottom: 1.5px solid var(--accent);
-    padding-bottom: 3px;
-    margin: 22px 0 8px;
-  }
-  .entry { margin-top: 10px; }
-  .entry-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 12px;
-  }
-  .entry-head .title { font-weight: 700; font-size: 14px; }
-  .entry-head .date { color: var(--gray); font-size: 12.5px; white-space: nowrap; }
-  .sub { font-style: italic; font-size: 13px; margin: 1px 0 2px; }
-  .sub.plain { font-style: normal; color: var(--gray); }
-  ul { margin: 2px 0 0 18px; }
-  li { margin-bottom: 3px; font-size: 13px; }
-  .interests { font-size: 13.5px; }
-  .pub {
-    font-size: 13px;
-    margin: 8px 0 0 22px;
-    text-indent: -22px;
-  }
-  .pub em { font-style: italic; }
-  @media print {
-    body { background: #fff; }
-    .page { box-shadow: none; margin: 0; max-width: none; padding: 0.5in 0.6in; }
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studio DALFU — Artist Portfolio</title>
+  <meta name="description" content="STUDIO DALFU — webtoon artist, illustrator and visual storyteller." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --black: #0b0b0b;
+      --white: #ffffff;
+      --paper: #f6f6f6;
+      --line: #dddddd;
+      --muted: #8a8a8a;
+      --text: #222222;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--paper);
+      color: var(--text);
+      font-family: "Source Sans 3", sans-serif;
+      line-height: 1.65;
+      font-size: 15px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .site-header {
+      background: var(--white);
+      text-align: center;
+      padding: 22px 20px 24px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .site-title {
+      font-family: "Oswald", sans-serif;
+      font-size: clamp(32px, 5vw, 50px);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--black);
+      line-height: 1.1;
+    }
+
+    .site-subtitle {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 5px 12px;
+      background: #fafafa;
+      font-size: 12px;
+      color: #555;
+      border: 1px solid #efefef;
+    }
+
+    .main-nav {
+      background: var(--black);
+      color: var(--white);
+      min-height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      overflow-x: auto;
+    }
+
+    .main-nav a {
+      position: relative;
+      padding: 16px 18px;
+      font-family: "Oswald", sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .main-nav a + a::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 16px;
+      bottom: 16px;
+      width: 1px;
+      background: #444;
+    }
+
+    .main-nav a:hover {
+      background: #1b1b1b;
+    }
+
+    .main-nav a.active {
+      background: #1b1b1b;
+      box-shadow: inset 0 -2px 0 var(--white);
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 28px));
+      margin: 28px auto 56px;
+    }
+
+    .intro {
+      background: var(--white);
+      border: 1px solid var(--line);
+      padding: 44px 36px;
+      text-align: center;
+      margin-bottom: 26px;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .intro h1 {
+      font-family: "Oswald", sans-serif;
+      font-size: clamp(34px, 6vw, 62px);
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      color: var(--black);
+    }
+
+    .intro p {
+      max-width: 680px;
+      margin: 16px auto 0;
+      color: #666;
+      font-size: 16px;
+      font-weight: 300;
+    }
+
+    .section {
+      margin-bottom: 34px;
+    }
+
+    .section-title {
+      font-family: "Oswald", sans-serif;
+      font-size: 24px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      padding-bottom: 9px;
+      border-bottom: 2px solid var(--black);
+      color: var(--black);
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      overflow: hidden;
+    }
+
+    .card-image {
+      aspect-ratio: 4 / 3;
+      background:
+        linear-gradient(135deg, rgba(0,0,0,0.03), rgba(0,0,0,0.09)),
+        repeating-linear-gradient(
+          45deg,
+          #f6f6f6,
+          #f6f6f6 10px,
+          #efefef 10px,
+          #efefef 20px
+        );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Oswald", sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      color: #9a9a9a;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .card-body {
+      padding: 16px 16px 18px;
+    }
+
+    .card-meta {
+      font-size: 10px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .card h3 {
+      font-family: "Oswald", sans-serif;
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.25;
+      margin-bottom: 10px;
+      color: var(--black);
+    }
+
+    .card p {
+      color: #666;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .text-panel {
+      background: var(--white);
+      border: 1px solid var(--line);
+      padding: 30px;
+    }
+
+    .text-panel p {
+      color: #555;
+      max-width: 820px;
+      margin-bottom: 14px;
+    }
+
+    .text-panel p:last-child {
+      margin-bottom: 0;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .small-panel {
+      background: var(--white);
+      border: 1px solid var(--line);
+      padding: 24px;
+    }
+
+    .small-panel h3 {
+      font-family: "Oswald", sans-serif;
+      font-size: 19px;
+      font-weight: 500;
+      margin-bottom: 10px;
+      color: var(--black);
+    }
+
+    .small-panel p,
+    .small-panel li {
+      font-size: 13px;
+      color: #666;
+    }
+
+    .small-panel ul {
+      padding-left: 18px;
+    }
+
+    .journal-list {
+      background: var(--white);
+      border: 1px solid var(--line);
+    }
+
+    .journal-item {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 22px;
+      padding: 20px 22px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .journal-item:last-child {
+      border-bottom: none;
+    }
+
+    .journal-date {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .journal-item h3 {
+      font-family: "Oswald", sans-serif;
+      font-size: 19px;
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+
+    .journal-item p {
+      color: #666;
+      font-size: 13px;
+    }
+
+    .contact-box {
+      background: var(--white);
+      border: 1px solid var(--line);
+      padding: 34px;
+      text-align: center;
+    }
+
+    .contact-box h2 {
+      font-family: "Oswald", sans-serif;
+      font-size: 28px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .contact-box p {
+      color: #666;
+      margin-bottom: 18px;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 16px;
+      background: var(--black);
+      color: var(--white);
+      border: 1px solid var(--black);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .button.secondary {
+      background: var(--white);
+      color: var(--black);
+    }
+
+    footer {
+      background: var(--white);
+      border-top: 1px solid var(--line);
+      text-align: center;
+      padding: 22px 20px;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 820px) {
+      .card-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .two-column {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .site-header {
+        padding-top: 18px;
+      }
+
+      .site-title {
+        font-size: 34px;
+      }
+
+      .main-nav {
+        justify-content: flex-start;
+      }
+
+      .main-nav a {
+        padding: 15px 14px;
+      }
+
+      .container {
+        width: min(100% - 18px, 1120px);
+        margin-top: 18px;
+      }
+
+      .intro {
+        padding: 32px 20px;
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .journal-item {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<div class="page">
+  <header class="site-header">
+    <div class="site-title">Studio Dalfu</div>
+    <div class="site-subtitle">Artist · Writer · Content Creator</div>
+  </header>
 
-<header>
-  <h1>JIHYUK LEE</h1>
-  <div class="contact">Seoul, South Korea</div>
-  <div class="contact">jihyuk.crea@gmail.com</div>
-</header>
+  <nav class="main-nav">
+    <a href="index.html" class="active">DALFU</a>
+    <a href="writer.html">WRITER</a>
+    <a href="index.html#works">Works</a>
+    <a href="index.html#journal">Journal</a>
+    <a href="index.html#contact">Contact</a>
+  </nav>
 
-<h2>Research Interests</h2>
-<p class="interests">Transmedia Storytelling · Digital Humanities · Computational Narrative Analysis (Text Mining of Audience Reception) · Adaptation Studies · Story IP Development across Webtoon, Film, and Drama</p>
+  <main class="container">
+    <section id="home" class="intro">
+      <div class="eyebrow">Artist Portfolio</div>
+      <h1>Novel, Stories, Drama, and Characters, and Visual Direction</h1>
+      <p>
+        STUDIO DALFU createe..............
+      </p>
+    </section>
 
-<h2>Education</h2>
+    <section id="works" class="section">
+      <h2 class="section-title">Featured Works</h2>
 
-<div class="entry">
-  <div class="entry-head"><span class="title">Chung-Ang University</span><span class="date">Mar 2025 – Present</span></div>
-  <div class="sub">M.A. Candidate in Creative Writing, Concentration in Storytelling Content — Seoul, Korea</div>
-  <ul>
-    <li>33 credits completed; GPA 4.31/4.5; expected graduation Spring 2027</li>
-    <li>Research on transmedia storytelling and computational (digital humanities) approaches to narrative and audience reception</li>
-  </ul>
-</div>
+      <div class="card-grid">
+        <article class="card">
+          <div class="card-image">Add Cover Image</div>
+          <div class="card-body">
+            <div class="card-meta">Novel · Drarma · Webtoon · Fantasy Romance</div>
+            <h3>Dr. Half Moon</h3>
+            <p>
+              울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라
+            </p>
+          </div>
+        </article>
 
-<div class="entry">
-  <div class="entry-head"><span class="title">Korea National University of Arts</span><span class="date">Mar 2013 – Feb 2015</span></div>
-  <div class="sub">Master of Arts Management (GPA 4.21/4.3) — Seoul, Korea</div>
-  <ul>
-    <li>Thesis: “Identification and Development Model of Success Factors in Commercial Film Projects,” applying Network Dynamics Theory</li>
-    <li>Student President, Arts Management Department</li>
-  </ul>
-</div>
+        <article class="card">
+          <div class="card-image">Add Storyboard Image</div>
+          <div class="card-body">
+            <div class="card-meta">Novel · AI Short film</div>
+            <h3>Cheoyong</h3>
+            <p>
+              울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라
+            </p>
+          </div>
+        </article>
 
-<div class="entry">
-  <div class="entry-head"><span class="title">Yonsei University</span><span class="date">Mar 2008 – Feb 2013</span></div>
-  <div class="sub">Bachelor of Business Administration, Minor in Industrial Engineering (GPA 3.82/4.3) — Seoul / San Francisco</div>
-  <ul>
-    <li>Vice President, Global Management Track (Official Track of Yonsei Business School); completed 170 units</li>
-  </ul>
-</div>
+        <article class="card">
+          <div class="card-image">Add Character Image</div>
+          <div class="card-body">
+            <div class="card-meta">Novel</div>
+            <h3>No more favors</h3>
+            <p>
+              울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
 
-<div class="entry">
-  <div class="entry-head"><span class="title">Gyeonggi Science High School for the Gifted</span><span class="date">Mar 2006 – Feb 2008</span></div>
-  <ul>
-    <li>Graduated early for outstanding academic performance</li>
-    <li>Thesis: “Analysis on the Characteristics of Language Network Phase by Development”</li>
-  </ul>
-</div>
+    <section id="about" class="section">
+      <h2 class="section-title">About</h2>
+      <div class="text-panel">
+        <p>
+          Studio Dalful is.................................
+        </p>
+        <p>
+          울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라울랄라
+        </p>
+      </div>
+    </section>
 
-<h2>Publications &amp; Conference Presentations</h2>
-<p class="pub">Lee, J. (2025). “A Study on Character Adaptation in <em>Mickey 17</em>, from Novel to Film” [소설 원작 영화 〈미키 17〉의 캐릭터 각색 연구]. <em>The Journal of Literature and Film</em> (문학과영상), KCI-indexed journal.</p>
-<p class="pub">Lee, J. (2026). “The Box-Office Mechanism of <em>The Man Who Lives with the King</em>: A Text-Mining Analysis of Audience Reviews” [〈왕과 사는 남자〉의 흥행 메커니즘]. <em>Spring Conference of the Korea Humanities Content Society</em> (인문콘텐츠학회 춘계학술대회), conference presentation.</p>
+    <section class="section">
+      <h2 class="section-title">Practice</h2>
+      <div class="two-column">
+        <div class="small-panel">
+          <h3>Areas of Work</h3>
+          <ul>
+            <li>Novels and creative fiction</li>
+            <li>Screenwriting for film and television</li>
+            <li>Fantasy narrative and world-building</li>
+            <li>Science- and mathematics-driven storytelling</li>
+          </ul>
+        </div>
 
-<h2>Grants &amp; Selected Creative Projects</h2>
+        <div class="small-panel">
+          <h3>Primary Genres</h3>
+          <ul>
+            <li>Fantasy</li>
+            <li>Romance</li>
+            <li>Drama</li>
+            <li>Action</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-<div class="entry">
-  <div class="entry-head"><span class="title">Korea Creative Content Agency (KOCCA) — Follow-up Support Program, Webtoon</span><span class="date">2026</span></div>
-  <ul><li>Selected project: <em>Doctor Half Moon: The Savior Who Comes with the Moonrise</em> 〈닥터 하프문: 달이 뜨면 찾아오는 구원자〉 — transmedia IP developed from drama to webtoon</li></ul>
-</div>
+    <section id="journal" class="section">
+      <h2 class="section-title">GRANTS</h2>
 
-<div class="entry">
-  <div class="entry-head"><span class="title">Korea Creative Content Agency (KOCCA) — Creative Talent Program, Film</span><span class="date">2025</span></div>
-  <ul><li>Selected project: <em>Cheoyong</em> 〈처용〉</li></ul>
-</div>
+      <div class="journal-list">
+        <article class="journal-item">
+          <div class="journal-date">2026.05</div>
+          <div>
+            <h3>Follow-up Support Program (Webtoon), Korea Creative Content Agency (KOCCA)</h3>
+            <p>Selected project: Doctor Half Moon: The Savior Who Comes with the Moonrise</br>
+    〈닥터 하프문: 달이 뜨면 찾아오는 구원자〉 —  transmedia IP developed from drama to webtoon</p>
+          </div>
+        </article>
 
-<div class="entry">
-  <div class="entry-head"><span class="title">Korea Creative Content Agency (KOCCA) — Creative Talent Program, Drama</span><span class="date">2023</span></div>
-  <ul><li>Selected project: <em>Doctor Half Moon: The Savior Who Comes with the Moonrise</em> 〈닥터 하프문: 달이 뜨면 찾아오는 구원자〉</li></ul>
-</div>
+        <article class="journal-item">
+          <div class="journal-date">2025.09</div>
+          <div>
+            <h3>Creative Talent Program, Film, Korea Creative Content Agency (KOCCA)</h3>
+            <p>Selected project: Cheoyong〈처용〉</p>
+          </div>
+        </article>
 
-<h2>Professional Experience</h2>
+        <article class="journal-item">
+          <div class="journal-date">2023.05</div>
+          <div>
+            <h3>Creative Talent Program, Drama, Korea Creative Content Agency (KOCCA)</h3>
+            <p>Selected project: Doctor Half Moon: The Savior Who Comes with the Moonrise
+            </br>〈닥터 하프문: 달이 뜨면 찾아오는 구원자〉</p>
+          </div>
+        </article>
+      </div>
+    </section>
 
-<div class="entry">
-  <div class="entry-head"><span class="title">Semicolon Studio (a subsidiary of NAVER Corp.)</span><span class="date">Jan 2020 – Present</span></div>
-  <div class="sub">Team Lead, Strategy &amp; Planning Team — Seoul, Korea</div>
-  <ul>
-    <li>Conducted end-to-end content production from planning to execution (web-drama, animation, YouTube channels), delivering 1.8M+ views on YouTube</li>
-    <li>Valuated 5+ projects and developed deal structures from in-house production to strategic partnerships, factoring in revenue shares on IP, V-commerce, and advertising</li>
-    <li>Translated performance-indicator data into content development and strategic decisions, identifying business opportunities under fast-paced trends</li>
-  </ul>
-</div>
+    <section id="contact" class="section">
+      <div class="contact-box">
+        <div class="eyebrow">Contact</div>
+        <h2>Publishing and Collaboration Enquiries</h2>
+        <p>
+          For webtoon, storyboard, illustration, publishing, and collaboration enquiries.
+        </p>
 
-<div class="entry">
-  <div class="entry-head"><span class="title">Sandbox Network</span><span class="date">Dec 2018 – Jan 2020</span></div>
-  <div class="sub">Part Lead, Strategic Partnerships — Seoul, Korea</div>
-  <ul>
-    <li>Led internal initiative to increase operating efficiency of a 10+ member team directly managing 88+ YouTube channels/partners</li>
-    <li>Managed 11+ production projects launched on YouTube; drove channel successes such as Discovery Korea (801K subscribers in 6 months)</li>
-    <li>Diversified deal structures from online to offline business for partnering YouTube creators</li>
-  </ul>
-</div>
+        <div class="contact-links">
+          <a class="button" href="mailto:jihyuk.crea@gmail.com">Email</a>
+          <a class="button secondary" href="#">Instagram</a>
+          <a class="button secondary" href="#">Blog</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
-<div class="entry">
-  <div class="entry-head"><span class="title">SK Telecom / SK SUPEX Council</span><span class="date">Jan 2015 – Jan 2017</span></div>
-  <div class="sub">Project Leader, New Energy Strategy Team, Global Growth Committee — Seoul / Tokyo / Beijing / San Francisco</div>
-  <ul>
-    <li>Developed market-entry strategies for the self-driving automotive market with top management consulting firms; presented reports to executives</li>
-    <li>Conducted competitive analysis and valuated projects behind organic and inorganic growth decisions</li>
-    <li>Led resource and execution planning across 10+ SK subsidiaries, including face-to-face interviews and site visits</li>
-  </ul>
-  <div class="sub">Manager, IoT Solution Business Division, SK Telecom</div>
-  <ul>
-    <li>Developed a data-driven strategy to improve energy solutions (BEMS, FEMS, DR), contributing to a 30%+ increase in energy-solution sales</li>
-  </ul>
-</div>
-
-<div class="entry">
-  <div class="entry-head"><span class="title">Michigan Venture Capital</span><span class="date">Sep 2014 – Dec 2014</span></div>
-  <div class="sub">Analyst Assistant (Intern), Investment Team — Seoul, Korea</div>
-  <ul>
-    <li>Valuated 10+ commercial film projects behind investment decisions</li>
-    <li>Evaluated and developed 3+ commercial film screenplays</li>
-  </ul>
-</div>
-
-<h2>Skills &amp; Qualifications</h2>
-<ul>
-  <li><strong>Transmedia Storytelling:</strong> original IP development and adaptation across webtoon, drama, film, and short-form video; industry experience in IP valuation and deal structuring</li>
-  <li><strong>Digital Humanities:</strong> computational narrative and reception analysis, including large-scale text mining of audience reviews (20,000+ documents); mixed-methods research design</li>
-  <li><strong>Data Analysis:</strong> strong quantitative and qualitative research experience; R, Visual Basic, C++, MATLAB</li>
-  <li><strong>Languages:</strong> Korean (native), English (fluent)</li>
-  <li><strong>IT Proficiency:</strong> MS Office Suite (PowerPoint, Excel, Word)</li>
-</ul>
-
-<h2>Honors &amp; Awards</h2>
-
-<div class="entry">
-  <div class="entry-head"><span class="title">GRS Full-Tuition Scholarship (Graduate Research Scholarship)</span><span class="date">2025 – 2026</span></div>
-  <div class="sub plain">Chung-Ang University</div>
-</div>
-<div class="entry">
-  <div class="entry-head"><span class="title">KNUA Scholarship for High Performance</span><span class="date">Spring 2014</span></div>
-  <div class="sub plain">Korea National University of Arts</div>
-</div>
-<div class="entry">
-  <div class="entry-head"><span class="title">TA Scholarship</span><span class="date">Fall 2013</span></div>
-  <div class="sub plain">Korea National University of Arts</div>
-</div>
-<div class="entry">
-  <div class="entry-head"><span class="title">D.K. Korea Scholarship</span><span class="date">Spring 2012</span></div>
-  <div class="sub plain">Yonsei Business School</div>
-</div>
-<div class="entry">
-  <div class="entry-head"><span class="title">Internal Scholarship (2 semesters); Honors (4 semesters)</span><span class="date">2008 – 2012</span></div>
-  <div class="sub plain">Yonsei University</div>
-</div>
-
-</div>
+  <footer>
+    © 2026 DALFU · ALL RIGHTS RESERVED
+  </footer>
 </body>
 </html>
